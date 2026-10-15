@@ -4,8 +4,8 @@ services:
     env: node
     plan: free
     region: oregon
-    buildCommand: npm run install:all && npm --prefix server run prisma:generate && npm run build
-    startCommand: npm --prefix server start
+    buildCommand: npm run install:all && npm run build
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
