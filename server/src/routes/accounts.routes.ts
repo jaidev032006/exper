@@ -36,7 +36,7 @@ router.get('/', requireAuth, async (req: Request, res: Response): Promise<void> 
       orderBy: [{ isDefault: 'desc' }, { createdAt: 'asc' }],
     });
 
-    const totalBalance = roundCurrency(accounts.reduce((sum, a) => sum + a.balance, 0));
+    const totalBalance = roundCurrency(accounts.reduce((sum, a) => sum + Number(a.balance), 0));
 
     res.json({
       success: true,

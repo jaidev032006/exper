@@ -171,13 +171,17 @@ router.get('/summary', requireAuth, async (req: Request, res: Response): Promise
       take: 4,
     });
 
-    const goalsWithProgress = savingsGoals.map((g) => ({
-      ...g,
-      targetAmount: roundCurrency(g.targetAmount),
-      currentAmount: roundCurrency(g.currentAmount),
-      percentage: g.targetAmount > 0 ? roundCurrency((g.currentAmount / g.targetAmount) * 100) : 0,
-      remaining: roundCurrency(Math.max(0, g.targetAmount - g.currentAmount)),
-    }));
+    const goalsWithProgress = savingsGoals.map((g) => {
+      const target = Number(g.targetAmount);
+      const current = Number(g.currentAmount);
+      return {
+        ...g,
+        targetAmount: roundCurrency(target),
+        currentAmount: roundCurrency(current),
+        percentage: target > 0 ? roundCurrency((current / target) * 100) : 0,
+        remaining: roundCurrency(Math.max(0, target - current)),
+      };
+    });
 
     // 9. Monthly Income vs Expense Trend (Last 6 Months)
     const sixMonthsAgo = new Date(currentYear, currentMonth - 5, 1);

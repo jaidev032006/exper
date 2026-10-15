@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: exper-personal-wealth
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm run install:all && npm --prefix server run prisma:generate && npm run build
+    startCommand: npm --prefix server start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CORS_ORIGIN
+        value: "*"

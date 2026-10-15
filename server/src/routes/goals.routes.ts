@@ -54,8 +54,8 @@ router.get('/', requireAuth, async (req: Request, res: Response): Promise<void> 
       };
     });
 
-    const totalTarget = roundCurrency(goals.reduce((sum, g) => sum + g.targetAmount, 0));
-    const totalSaved = roundCurrency(goals.reduce((sum, g) => sum + g.currentAmount, 0));
+    const totalTarget = roundCurrency(goals.reduce((sum, g) => sum + Number(g.targetAmount), 0));
+    const totalSaved = roundCurrency(goals.reduce((sum, g) => sum + Number(g.currentAmount), 0));
 
     res.json({
       success: true,
