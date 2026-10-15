@@ -1,0 +1,28 @@
+{
+  "name": "exper-monorepo",
+  "version": "1.0.0",
+  "description": "Exper – Personal Expense Tracker and Financial Planning Dashboard",
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "build": "npm --prefix server run build && npm --prefix client run build",
+    "test": "npm --prefix server run test",
+    "seed": "npm --prefix server run seed",
+    "prisma:generate": "npm --prefix server run prisma:generate",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "keywords": [
+    "fintech",
+    "expense-tracker",
+    "financial-planner",
+    "react",
+    "vite",
+    "express",
+    "prisma",
+    "inr"
+  ],
+  "author": "Exper Team",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
